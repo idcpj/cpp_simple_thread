@@ -1,5 +1,5 @@
-CXX = c++
-CXXFLAGS = -std=c++11 -Wall -pthread -I./src/lib
+CXX = clang++
+CXXFLAGS = -std=c++14 -Wall -pthread -I./src/lib
 LDFLAGS = 
 
 # 源文件目录
@@ -31,6 +31,7 @@ else
     RMDIR = rm -rf
     SEP = /
 endif
+
 
 # 源文件
 SRCS = $(SRC_DIR)/main.cpp \
@@ -75,3 +76,10 @@ $(OBJDIR)/%.o: $(LIB_DIR)/%.cpp
 clean:
 	-$(RM) $(OBJDIR)$(SEP)*.o $(TARGET)
 	-$(RMDIR) $(OBJDIR)
+
+# 显示编译信息
+info:
+	@echo "Compiler: $(CXX)"
+	@echo "Target: $(TARGET)"
+	@echo "Objects: $(OBJS)"
+	@echo "Sources: $(SRCS)"
