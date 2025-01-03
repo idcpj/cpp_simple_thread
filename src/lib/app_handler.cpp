@@ -25,6 +25,6 @@ std::string AppHandler::parseProtocol(const std::string& request) {
 }
 
 void AppHandler::queryDatabase(const std::string& query) {
-    auto conn = dbPool.getConnection();
+    std::shared_ptr<DatabaseConnection> conn = dbPool.getConnection();
     conn->execute(query);
 } 

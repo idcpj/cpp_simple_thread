@@ -10,7 +10,7 @@ std::shared_ptr<DatabaseConnection> ConnectionPool::getConnection() {
     std::unique_lock<std::mutex> lock(mtx);
     cv.wait(lock, [this] { return !pool.empty(); });
 
-    auto conn = pool.front();
+    std::shared_ptr<DatabaseConnection> conn = pool.front();
     pool.pop();
     return conn;
 } 
